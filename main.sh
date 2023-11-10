@@ -6,11 +6,11 @@ if ! command -v openssl &> /dev/null; then
     exit
 fi
 
-# Function to generate a self-signed certificate for Linux and Mac
+# Function to generate a 5 year self-signed certificate for Linux and Mac
 generate_cert() {
     openssl req -x509 -out localhost.crt -keyout localhost.key \
       -newkey rsa:2048 -nodes -sha256 \
-      -subj '/CN=localhost' -extensions EXT -config <( \
+      -subj '/CN=localhost' -days 1825 -extensions EXT -config <( \
        printf "[dn]\nCN=localhost\n[req]\n\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 }
 

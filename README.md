@@ -45,3 +45,11 @@ PowerShell is pre-installed on modern Windows systems. If necessary, it can be d
 - Linux: `sudo rm /usr/local/share/ca-certificates/localhost.crt` `sudo update-ca-certificates`
 - MacOS: `sudo security delete-certificate -c "localhost" /Library/Keychains/System.keychain`
 - Windows: (**Powershell as admin**) `Get-ChildItem -Path Cert:\LocalMachine\Root | Where-Object { $_.Subject -like "*localhost*" } | Remove-Item`
+
+## Timeframe
+
+If you need to change the time:
+
+for mac and linux: change the `-days 1825` in the main.sh `generate_cert()`
+
+for windows: change the `$fiveYears = (Get-Date).AddYears(5)` inside main.bat (note: if you change the $fiveyears variable name, you must change it the name everywhere within main.bat)
